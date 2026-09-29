@@ -25,6 +25,16 @@ export const commonSyntaxTokenColors = (palette: ThemePalette): readonly TokenCo
     settings: { foreground: palette.string },
   },
   {
+    name: "Regular expressions",
+    scope: ["string.regexp"],
+    settings: { foreground: palette.regexp },
+  },
+  {
+    name: "Escape characters",
+    scope: ["constant.character.escape"],
+    settings: { foreground: palette.escape },
+  },
+  {
     name: "Numbers",
     scope: ["constant.numeric"],
     settings: { foreground: palette.number },
