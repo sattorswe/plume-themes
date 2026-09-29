@@ -13,6 +13,18 @@ type AccentRole =
 
 type EditorRole = "selection" | "inactiveSelection" | "findMatch" | "findMatchHighlight";
 
+type ChangeRole =
+  | "added"
+  | "modified"
+  | "deleted"
+  | "conflict"
+  | "insertedLine"
+  | "insertedText"
+  | "removedLine"
+  | "removedText";
+
+type DiagnosticRole = "error" | "warning";
+
 type SyntaxRole =
   | "keyword"
   | "string"
@@ -53,6 +65,14 @@ type AnsiRole =
   | "ansiBrightCyan"
   | "ansiBrightWhite";
 
-export type PaletteRole = SurfaceRole | AccentRole | EditorRole | SyntaxRole | EffectRole | AnsiRole;
+export type PaletteRole =
+  | SurfaceRole
+  | AccentRole
+  | EditorRole
+  | ChangeRole
+  | DiagnosticRole
+  | SyntaxRole
+  | EffectRole
+  | AnsiRole;
 
 export type ThemePalette = Readonly<Record<PaletteRole, HexColor>>;
