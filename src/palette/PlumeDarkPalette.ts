@@ -23,6 +23,18 @@ export const plumeDarkPalette: ThemePalette = {
   findMatch: "#515C6A",
   findMatchHighlight: "#EA5C0055",
 
+  added: "#73C991",
+  modified: "#E2C08D",
+  deleted: "#F14C4C",
+  conflict: "#C586C0",
+  insertedLine: "#2EA04326",
+  insertedText: "#2EA04366",
+  removedLine: "#F8514926",
+  removedText: "#F8514966",
+
+  error: "#F14C4C",
+  warning: "#CCA700",
+
   keyword: "#569CD6",
   string: "#CE9178",
   comment: "#6A9955",
