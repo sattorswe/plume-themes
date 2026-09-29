@@ -4,6 +4,14 @@ A minimal light and dark theme for VS Code, in the spirit of the classic Visual 
 
 This extension is not published to the VS Code Marketplace. You build it from this repository and install it on your own machine.
 
+## Screenshots
+
+| Plume Light | Plume Dark |
+| --- | --- |
+| ![Editor in Plume Light](docs/screenshots/light-editor.png) | ![Editor in Plume Dark](docs/screenshots/dark-editor.png) |
+| ![Explorer and hover in Plume Light](docs/screenshots/light-explorer.png) | ![Explorer in Plume Dark](docs/screenshots/dark-explorer.png) |
+| ![Command Palette in Plume Light](docs/screenshots/light-command-palette.png) | ![Command Palette in Plume Dark](docs/screenshots/dark-command-palette.png) |
+
 ## What you get
 
 Plume is made of three layers. Each one is installed by a different step below.
