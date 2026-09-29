@@ -6,6 +6,16 @@ export const runtimeConfig = {
     text: "%s %s",
     command: "workbench.action.editor.changeLanguageMode",
   },
+  customStyles: {
+    loaderId: "be5invis.vscode-custom-css",
+    section: "vscode_custom_css",
+    importsKey: "imports",
+    plumeImportPattern: /\/plume\.plume-themes-[^/]+\/dist\/plume\.css$/,
+    workbenchPage: ["out", "vs", "code", "electron-browser", "workbench", "workbench.html"],
+    applyCommand: "extension.updateCustomCSS",
+    prompt: "Plume styles changed. Apply them now?",
+    action: "Apply Styles",
+  },
   typeScript: {
     languages: ["typescript", "typescriptreact"],
     workspaceManifest: ["node_modules", "typescript", "package.json"],
