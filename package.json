@@ -2,8 +2,9 @@
   "name": "plume-themes",
   "displayName": "Plume Themes",
   "description": "Plume color theme for VS Code",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "plume",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/sattorswe/plume-themes"
@@ -38,6 +39,7 @@
       "editor.lineNumbersMinChars": 2,
       "editor.glyphMargin": false,
       "editor.lineDecorationsWidth": 24,
+      "editor.fontFamily": "CommitMono, Menlo, Monaco, 'Courier New', monospace",
       "editor.lineHeight": 2.2,
       "breadcrumbs.enabled": false,
       "workbench.tree.indent": 16,
