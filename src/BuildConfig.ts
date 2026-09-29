@@ -1,5 +1,9 @@
+import { tmpdir } from "node:os";
+import { resolve } from "node:path";
+
 export const buildConfig = {
   output: { dir: "dist", indent: 2 },
+  workspace: { prefix: resolve(tmpdir(), "plume-themes-") },
   schema: "vscode://schemas/color-theme",
   themes: {
     light: {
@@ -18,5 +22,11 @@ export const buildConfig = {
   styles: { file: "plume.css" },
   bundles: {
     runtime: { entry: "src/runtime/PlumeExtension.ts", file: "extension.cjs", target: "node", format: "cjs", external: ["vscode"] },
+  },
+  extension: {
+    name: "plume-themes",
+    ext: ".vsix",
+    package: ["vsce", "package", "--no-dependencies", "--allow-missing-repository", "--skip-license", "--out"],
+    install: ["code", "--force", "--install-extension"],
   },
 } as const;
