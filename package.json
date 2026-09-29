@@ -1,0 +1,61 @@
+{
+  "name": "plume-themes",
+  "displayName": "Plume Themes",
+  "description": "Plume color theme for VS Code",
+  "version": "0.0.1",
+  "publisher": "plume",
+  "private": true,
+  "packageManager": "bun@1.4.2",
+  "type": "module",
+  "engines": {
+    "vscode": "^1.139.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "main": "dist/extension.cjs",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Plume Light",
+        "uiTheme": "vs",
+        "path": "dist/plume-light-color-theme.json"
+      },
+      {
+        "label": "Plume Dark",
+        "uiTheme": "vs-dark",
+        "path": "dist/plume-dark-color-theme.json"
+      }
+    ],
+    "configurationDefaults": {
+      "editor.lineNumbersMinChars": 2,
+      "editor.glyphMargin": false,
+      "editor.lineDecorationsWidth": 24,
+      "editor.lineHeight": 2.2,
+      "breadcrumbs.enabled": false,
+      "workbench.tree.indent": 16,
+      "workbench.tree.renderIndentGuides": "always",
+      "window.commandCenter": false,
+      "window.title": "${activeEditorShort}",
+      "vscode_custom_css.statusbar": false,
+      "window.autoDetectColorScheme": true,
+      "workbench.preferredLightColorTheme": "Plume Light",
+      "workbench.preferredDarkColorTheme": "Plume Dark"
+    }
+  },
+  "scripts": {
+    "build": "bun src/index.ts",
+    "typecheck": "tsc",
+    "package": "bun run build && vsce package --no-dependencies --allow-missing-repository --skip-license"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.2",
+    "@types/vscode": "1.138.0",
+    "@vscode/vsce": "^4.0.0",
+    "postcss": "^8.5.28",
+    "typescript": "^7.0.2"
+  }
+}
