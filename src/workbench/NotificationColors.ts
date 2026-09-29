@@ -11,4 +11,6 @@ export const notificationColors = (palette: ThemePalette): WorkbenchColors<Notif
   "notificationCenterHeader.foreground": palette.text,
   "notificationLink.foreground": palette.accent,
   "notificationsInfoIcon.foreground": palette.accent,
+  "notificationsWarningIcon.foreground": palette.warning,
+  "notificationsErrorIcon.foreground": palette.error,
 });
