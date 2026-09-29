@@ -1,7 +1,10 @@
 import type { HexColor } from "@/types/PaletteTypes.ts";
 
+type FontStyle = "bold" | "italic" | "strikethrough";
+
 interface TokenColorSettings {
-  readonly foreground: HexColor;
+  readonly foreground?: HexColor;
+  readonly fontStyle?: FontStyle;
 }
 
 export interface TokenColorRule {
