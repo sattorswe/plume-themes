@@ -18,9 +18,9 @@ Plume is made of three layers. Each one is installed by a different step below.
 
 | Layer | What it does | Needs |
 | --- | --- | --- |
-| **Color themes** | Plume Light and Plume Dark. VS Code switches between them automatically with your macOS appearance. | Only the extension |
+| **Color themes** | Plume Light and Plume Dark, including Git and diff colors, error and warning squiggles, and the Settings, Welcome, and Extensions pages. VS Code switches between them automatically with your macOS appearance. | Only the extension |
 | **Layout defaults** | Wider line spacing, a compact gutter, a clean editor header, the file name as the window title, and a status bar item that shows the language of any file and, for common languages, its version (for example `PHP 8.5.11` or `TypeScript 7.0.2`). | Only the extension |
-| **Plume CSS** | Rounded cards for the Command Palette, hovers, suggestions, and notifications; soft pill selection in the Explorer; thin scrollbars; a tidier editor header without split and `...` buttons; the CommitMono interface font; and the shimmering status bar labels. | The Custom CSS and JS Loader extension and the CommitMono font |
+| **Plume CSS** | Rounded cards for the Command Palette, the Find widget, hovers, suggestions, and notifications; rounded rows, inputs, and buttons in Settings, Welcome, and extension pages; soft pill selection in the Explorer; thin scrollbars; a tidier editor header without split and `...` buttons; the CommitMono interface font; and the shimmering status bar labels. | The Custom CSS and JS Loader extension and the CommitMono font |
 
 If you skip the Plume CSS layer, the themes and layout defaults still work. You just get the standard VS Code shapes and font.
 
@@ -73,30 +73,23 @@ bun install
 
 Bun may print `Blocked 1 postinstall`. That is expected and safe: it is a signing helper for the Marketplace, which Plume doesn't use.
 
-### 3. Build the extension
+### 3. Install it into VS Code
 
 ```bash
-bun run package
+bun run install:vscode
 ```
 
-This creates `plume-themes-0.0.1.vsix` in the project folder.
-
-### 4. Install it into VS Code
-
-```bash
-code --install-extension plume-themes-0.0.1.vsix
-rm plume-themes-0.0.1.vsix
-```
+This builds the extension, packs it into a temporary `.vsix` file, installs it into VS Code, and deletes the temporary file. Nothing is left in the project folder.
 
 If VS Code is already open, press `Cmd+Shift+P` and run **Developer: Reload Window** so the theme and its layout defaults load.
 
-### 5. Check the theme
+### 4. Check the theme
 
 Plume turns on automatic switching for you. Open **Settings** (`Cmd+,`), search for `autoDetectColorScheme`, and make sure **Window: Auto Detect Color Scheme** is checked. VS Code now uses Plume Light when macOS is light and Plume Dark when macOS is dark.
 
 To pick one theme yourself instead, uncheck that setting, press `Cmd+K Cmd+T`, and choose **Plume Light** or **Plume Dark**.
 
-### 6. Set the editor font
+### 5. Set the editor font
 
 Open your `settings.json` (`Cmd+Shift+P`, then **Preferences: Open User Settings (JSON)**) and add:
 
@@ -104,7 +97,7 @@ Open your `settings.json` (`Cmd+Shift+P`, then **Preferences: Open User Settings
 "editor.fontFamily": "CommitMono"
 ```
 
-### 7. Turn on Plume CSS
+### 6. Turn on Plume CSS
 
 1. Install the loader:
 
@@ -112,25 +105,12 @@ Open your `settings.json` (`Cmd+Shift+P`, then **Preferences: Open User Settings
    code --install-extension be5invis.vscode-custom-css
    ```
 
-2. Print the address of the Plume stylesheet on your machine:
+2. In VS Code, press `Cmd+Shift+P` and run **Developer: Reload Window**.
+3. Plume adds its stylesheet to `vscode_custom_css.imports` in your settings by itself, then asks **Plume styles changed. Apply them now?** Click **Apply Styles**.
+4. VS Code may say that your installation "appears to be corrupt". This is expected, because the loader edits VS Code's own files. Click **Don't Show Again**.
+5. Quit VS Code completely with `Cmd+Q` and open it again. Reload Window is not enough.
 
-   ```bash
-   echo "file://$HOME/.vscode/extensions/plume.plume-themes-0.0.1/dist/plume.css"
-   ```
-
-3. Add that address to your `settings.json`. Use the exact line the previous command printed:
-
-   ```json
-   "vscode_custom_css.imports": [
-       "file:///Users/you/.vscode/extensions/plume.plume-themes-0.0.1/dist/plume.css"
-   ]
-   ```
-
-4. Press `Cmd+Shift+P` and run **Enable Custom CSS and JS**.
-5. VS Code may say that your installation "appears to be corrupt". This is expected, because the loader edits VS Code's own files. Click **Don't Show Again**.
-6. Quit VS Code completely with `Cmd+Q` and open it again. Reload Window is not enough.
-
-### 8. Clean up the status bar
+### 7. Clean up the status bar
 
 Plume shows the language and version on the left and the cursor position (`Ln 1, Col 1`) on the right. VS Code doesn't let extensions hide its other status bar items, so hide them once by hand:
 
@@ -139,7 +119,7 @@ Plume shows the language and version on the left and the cursor position (`Ln 1,
 
 VS Code remembers this choice.
 
-### 9. Check that everything works
+### 8. Check that everything works
 
 Open a TypeScript or PHP file. You should see:
 
@@ -148,23 +128,21 @@ Open a TypeScript or PHP file. You should see:
 - A bold blue `TypeScript 7.0.2` (or `PHP ...`) at the bottom left and a bold `Ln, Col` at the bottom right, both with a moving shimmer.
 - Rounded cards when you press `Cmd+Shift+P`, and the interface in the CommitMono font.
 
-If only the first two items work, Plume CSS is not active. Go back to step 7.
+If only the first two items work, Plume CSS is not active. Go back to step 6.
 
 ## Update
 
 ```bash
 git pull
 bun install
-bun run package
-code --install-extension plume-themes-0.0.1.vsix --force
-rm plume-themes-0.0.1.vsix
+bun run install:vscode
 ```
 
-Then, in VS Code, run **Reload Custom CSS and JS** from the Command Palette, and after that **Developer: Reload Window**. The loader copies the stylesheet into VS Code when you enable or reload it, so style changes only appear after that command.
+Then run **Developer: Reload Window** in VS Code. If the stylesheet changed, Plume asks **Plume styles changed. Apply them now?** Click **Apply Styles**, then quit VS Code with `Cmd+Q` and open it again.
 
 ## After a VS Code update
 
-A VS Code update replaces the files the loader edited, so the Plume CSS layer disappears. Run **Enable Custom CSS and JS** again, then quit and reopen VS Code. The color themes are not affected.
+A VS Code update replaces the files the loader edited, so the Plume CSS layer disappears. Plume notices this on the next start and asks you to apply the styles again. Click **Apply Styles**, then quit and reopen VS Code. The color themes are not affected.
 
 ## Language versions
 
@@ -221,9 +199,11 @@ The extension sets these defaults. Any value in your own `settings.json` wins ov
 
 ## Troubleshooting
 
-**Style changes don't show up.** Run **Reload Custom CSS and JS**, then **Developer: Reload Window**.
+**Style changes don't show up.** Run **Developer: Reload Window** and click **Apply Styles** when Plume asks. If Plume doesn't ask, run **Reload Custom CSS and JS** from the Command Palette, then quit and reopen VS Code.
 
-**The status bar still shows Git, Spaces, UTF-8, and other items.** Hide them as described in step 8. If they come back after you hid them, quit VS Code with `Cmd+Q` and open it again.
+**Plume never asks to apply styles.** Plume only asks when the Custom CSS and JS Loader is installed. Check that `be5invis.vscode-custom-css` appears in `code --list-extensions`.
+
+**The status bar still shows Git, Spaces, UTF-8, and other items.** Hide them as described in step 7. If they come back after you hid them, quit VS Code with `Cmd+Q` and open it again.
 
 **The title bar is gone.** VS Code hides an empty title bar in full screen. Use a normal or maximized window instead of full screen.
 
@@ -241,15 +221,16 @@ The extension sets these defaults. Any value in your own `settings.json` wins ov
 
 1. `plume-light-color-theme.json` and `plume-dark-color-theme.json`, generated from one set of color rules and two palettes.
 2. `plume.css`, the Plume CSS layer, generated with PostCSS. Its colors are CSS variables that switch with the active theme.
-3. `extension.cjs`, the small runtime that adds the language version to the status bar.
+3. `extension.cjs`, the small runtime that adds the language version to the status bar and keeps the Plume stylesheet registered with the Custom CSS and JS Loader.
 
-`bun run typecheck` checks the code, and `bun run package` builds and packs the `.vsix`.
+`bun run typecheck` checks the code, and `bun run install:vscode` builds, packs, and installs the extension.
 
 ## Project structure
 
 ```
 src/
 ├── index.ts          Build entry point
+├── install.ts        Install entry point
 ├── BuildConfig.ts    Theme names, output files, and bundle settings
 ├── actions/          One build step per file
 ├── palette/          Light and dark palettes and the theme variants
@@ -257,7 +238,7 @@ src/
 ├── workbench/        Colors for the rest of the interface
 ├── styles/           Plume CSS rules and shared style tokens
 ├── typography/       Font settings
-├── runtime/          The status bar runtime
+├── runtime/          Status bar item and stylesheet registration
 ├── support/          Small shared helpers
 └── types/            Shared TypeScript types
 ```
