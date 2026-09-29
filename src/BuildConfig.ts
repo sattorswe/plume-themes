@@ -26,7 +26,7 @@ export const buildConfig = {
   extension: {
     name: "plume-themes",
     ext: ".vsix",
-    package: ["vsce", "package", "--no-dependencies", "--allow-missing-repository", "--skip-license", "--out"],
+    package: ["vsce", "package", "--no-dependencies", "--out"],
     install: ["code", "--force", "--install-extension"],
   },
 } as const;
