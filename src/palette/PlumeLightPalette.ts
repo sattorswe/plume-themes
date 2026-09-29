@@ -23,6 +23,18 @@ export const plumeLightPalette: ThemePalette = {
   findMatch: "#A8AC94",
   findMatchHighlight: "#EA5C0055",
 
+  added: "#008000",
+  modified: "#9A6700",
+  deleted: "#CD3131",
+  conflict: "#AF00DB",
+  insertedLine: "#2EA0431A",
+  insertedText: "#2EA04340",
+  removedLine: "#F851491A",
+  removedText: "#F8514940",
+
+  error: "#E51400",
+  warning: "#BF8803",
+
   keyword: "#0000FF",
   string: "#A31515",
   comment: "#008000",
