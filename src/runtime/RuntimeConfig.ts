@@ -13,8 +13,17 @@ export const runtimeConfig = {
     plumeImportPattern: /\/plume\.plume-themes-[^/]+\/dist\/plume\.css$/,
     workbenchPage: ["out", "vs", "code", "electron-browser", "workbench", "workbench.html"],
     applyCommand: "extension.updateCustomCSS",
-    prompt: "Plume styles changed. Apply them now?",
-    action: "Apply Styles",
+    installCommand: "workbench.extensions.installExtension",
+    quitCommand: "workbench.action.quit",
+    loaderPromptedKey: "plume.loaderPrompted",
+    prompts: {
+      install: {
+        message: "Plume needs the Custom CSS and JS Loader for its rounded interface and font. Install it now?",
+        action: "Install Loader",
+      },
+      apply: { message: "Plume styles changed. Apply them now?", action: "Apply Styles" },
+      restart: { message: "Plume styles are applied. Quit VS Code and open it again to see them.", action: "Quit VS Code" },
+    },
   },
   typeScript: {
     languages: ["typescript", "typescriptreact"],
