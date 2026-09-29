@@ -20,6 +20,7 @@ export const shimmerCssVariables: Readonly<Record<ShimmerVariableRole, CssVariab
 
 export const plumeCssValues = {
   cardShadow: "0 10px 34px var(--plume-shadow), 0 0 0 1px var(--plume-hairline)",
+  compactCardShadow: "0 2px 8px var(--plume-shadow), 0 0 0 1px var(--plume-hairline)",
   shimmerGradient:
     "linear-gradient(90deg, var(--plume-shimmer-base) 0%, var(--plume-shimmer-base) 40%, var(--plume-shimmer-glow) 50%, var(--plume-shimmer-base) 60%, var(--plume-shimmer-base) 100%)",
 } as const;
