@@ -11,7 +11,7 @@ Plume is made of three layers. Each one is installed by a different step below.
 | Layer | What it does | Needs |
 | --- | --- | --- |
 | **Color themes** | Plume Light and Plume Dark. VS Code switches between them automatically with your macOS appearance. | Only the extension |
-| **Layout defaults** | Wider line spacing, a compact gutter, a clean editor header, the file name as the window title, and a status bar item that shows the language and its version (for example `PHP 8.5.11` or `TypeScript 7.0.2`). | Only the extension |
+| **Layout defaults** | Wider line spacing, a compact gutter, a clean editor header, the file name as the window title, and a status bar item that shows the language of any file and, for common languages, its version (for example `PHP 8.5.11` or `TypeScript 7.0.2`). | Only the extension |
 | **Plume CSS** | Rounded cards for the Command Palette, hovers, suggestions, and notifications; soft pill selection in the Explorer; thin scrollbars; a tidier editor header without split and `...` buttons; the CommitMono interface font; and the shimmering status bar labels. | The Custom CSS and JS Loader extension and the CommitMono font |
 
 If you skip the Plume CSS layer, the themes and layout defaults still work. You just get the standard VS Code shapes and font.
@@ -45,7 +45,7 @@ Check each item before you start. The install steps assume all of them.
 
 Optional:
 
-- **PHP on your `PATH`**, if you want the status bar to show your PHP version. Without it, the item shows only `PHP`.
+- **Language toolchains on your `PATH`**, if you want the status bar to show their versions. Without one, the item shows only the language name. See [Language versions](#language-versions).
 - **[Plume Icons](https://github.com/sattorswe/plume-icons)**, the matching product icon theme.
 
 ## Install
@@ -158,6 +158,27 @@ Then, in VS Code, run **Reload Custom CSS and JS** from the Command Palette, and
 
 A VS Code update replaces the files the loader edited, so the Plume CSS layer disappears. Run **Enable Custom CSS and JS** again, then quit and reopen VS Code. The color themes are not affected.
 
+## Language versions
+
+The status bar shows the name of every language VS Code knows. For these languages it also shows the version, read from the command in the second column:
+
+| Language | Command |
+| --- | --- |
+| TypeScript, TypeScript JSX | the project's `node_modules/typescript`, otherwise the version built into VS Code |
+| JavaScript, JavaScript JSX | `node --version` |
+| PHP | `php -r "echo PHP_VERSION;"` |
+| Python | `python3 --version` |
+| Go | `go version` |
+| Rust | `rustc --version` |
+| Java | `java --version` |
+| Ruby | `ruby --version` |
+| Dart | `dart --version` |
+| Swift | `swift --version` |
+| C, C++, Objective-C | `clang --version` |
+| Shell Script | `bash --version` |
+
+Each command runs once per VS Code session. If a command is missing, the item shows only the language name.
+
 ## Settings Plume changes
 
 The extension sets these defaults. Any value in your own `settings.json` wins over them, so remove a line from your settings if you want Plume's value.
@@ -200,7 +221,7 @@ The extension sets these defaults. Any value in your own `settings.json` wins ov
 
 **Breakpoints are invisible.** Plume turns off the column where VS Code draws them. Add `"editor.glyphMargin": true` to your `settings.json` while you debug.
 
-**The status bar shows `PHP` without a version.** Make sure `php -v` works in a terminal, then restart VS Code.
+**The status bar shows a language without a version.** Make sure the command from [Language versions](#language-versions) works in a terminal, then restart VS Code. Languages that are not in that table only show their name.
 
 **The loader reports a permission error.** VS Code must be in `/Applications` and owned by your user account.
 
