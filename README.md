@@ -2,7 +2,7 @@
 
 A minimal light and dark theme for VS Code, in the spirit of the classic Visual Studio themes: keywords, strings, comments, and numbers get a color, everything else stays plain. Plume also reshapes the VS Code interface itself with soft rounded cards, quiet selections, and a clean status bar.
 
-This extension is not published to the VS Code Marketplace. You build it from this repository and install it on your own machine.
+This extension is not published to the VS Code Marketplace. You download it from [GitHub Releases](https://github.com/sattorswe/plume-themes/releases) and install it with one command.
 
 ## Screenshots
 
@@ -36,20 +36,11 @@ Check each item before you start. The install steps assume all of them.
    code --version
    ```
 
-4. **Bun 1.4.2 or newer.** It builds the extension. Install it with Homebrew, then check it:
-
-   ```bash
-   brew install oven-sh/bun/bun
-   bun --version
-   ```
-
-5. **The CommitMono font.** Plume CSS uses it for the interface, and it is the recommended editor font:
+4. **The CommitMono font.** Plume CSS uses it for the interface, and it is the recommended editor font:
 
    ```bash
    brew install --cask font-commit-mono
    ```
-
-6. **Git or the GitHub CLI** to download this repository.
 
 Optional:
 
@@ -58,38 +49,27 @@ Optional:
 
 ## Install
 
-### 1. Download the code
+### 1. Install the extension
+
+Download the latest release and install it into VS Code:
 
 ```bash
-gh repo clone sattorswe/plume-themes
-cd plume-themes
+curl -fLO https://github.com/sattorswe/plume-themes/releases/latest/download/plume-themes.vsix
+code --install-extension plume-themes.vsix
+rm plume-themes.vsix
 ```
-
-### 2. Install the build tools
-
-```bash
-bun install
-```
-
-Bun may print `Blocked 1 postinstall`. That is expected and safe: it is a signing helper for the Marketplace, which Plume doesn't use.
-
-### 3. Install it into VS Code
-
-```bash
-bun run install:vscode
-```
-
-This builds the extension, packs it into a temporary `.vsix` file, installs it into VS Code, and deletes the temporary file. Nothing is left in the project folder.
 
 If VS Code is already open, press `Cmd+Shift+P` and run **Developer: Reload Window** so the theme and its layout defaults load.
 
-### 4. Check the theme
+To build the extension yourself instead, see [Build from source](#build-from-source).
+
+### 2. Check the theme
 
 Plume turns on automatic switching for you. Open **Settings** (`Cmd+,`), search for `autoDetectColorScheme`, and make sure **Window: Auto Detect Color Scheme** is checked. VS Code now uses Plume Light when macOS is light and Plume Dark when macOS is dark.
 
 To pick one theme yourself instead, uncheck that setting, press `Cmd+K Cmd+T`, and choose **Plume Light** or **Plume Dark**.
 
-### 5. Set the editor font
+### 3. Set the editor font
 
 Open your `settings.json` (`Cmd+Shift+P`, then **Preferences: Open User Settings (JSON)**) and add:
 
@@ -97,7 +77,7 @@ Open your `settings.json` (`Cmd+Shift+P`, then **Preferences: Open User Settings
 "editor.fontFamily": "CommitMono"
 ```
 
-### 6. Turn on Plume CSS
+### 4. Turn on Plume CSS
 
 1. Install the loader:
 
@@ -110,7 +90,7 @@ Open your `settings.json` (`Cmd+Shift+P`, then **Preferences: Open User Settings
 4. VS Code may say that your installation "appears to be corrupt". This is expected, because the loader edits VS Code's own files. Click **Don't Show Again**.
 5. Quit VS Code completely with `Cmd+Q` and open it again. Reload Window is not enough.
 
-### 7. Clean up the status bar
+### 5. Clean up the status bar
 
 Plume shows the language and version on the left and the cursor position (`Ln 1, Col 1`) on the right. VS Code doesn't let extensions hide its other status bar items, so hide them once by hand:
 
@@ -119,7 +99,7 @@ Plume shows the language and version on the left and the cursor position (`Ln 1,
 
 VS Code remembers this choice.
 
-### 8. Check that everything works
+### 6. Check that everything works
 
 Open a TypeScript or PHP file. You should see:
 
@@ -128,14 +108,16 @@ Open a TypeScript or PHP file. You should see:
 - A bold blue `TypeScript 7.0.2` (or `PHP ...`) at the bottom left and a bold `Ln, Col` at the bottom right, both with a moving shimmer.
 - Rounded cards when you press `Cmd+Shift+P`, and the interface in the CommitMono font.
 
-If only the first two items work, Plume CSS is not active. Go back to step 6.
+If only the first two items work, Plume CSS is not active. Go back to step 4.
 
 ## Update
 
+Download the latest release and install it over the current one:
+
 ```bash
-git pull
-bun install
-bun run install:vscode
+curl -fLO https://github.com/sattorswe/plume-themes/releases/latest/download/plume-themes.vsix
+code --install-extension plume-themes.vsix --force
+rm plume-themes.vsix
 ```
 
 Then run **Developer: Reload Window** in VS Code. If the stylesheet changed, Plume asks **Plume styles changed. Apply them now?** Click **Apply Styles**, then quit VS Code with `Cmd+Q` and open it again.
@@ -203,7 +185,7 @@ The extension sets these defaults. Any value in your own `settings.json` wins ov
 
 **Plume never asks to apply styles.** Plume only asks when the Custom CSS and JS Loader is installed. Check that `be5invis.vscode-custom-css` appears in `code --list-extensions`.
 
-**The status bar still shows Git, Spaces, UTF-8, and other items.** Hide them as described in step 7. If they come back after you hid them, quit VS Code with `Cmd+Q` and open it again.
+**The status bar still shows Git, Spaces, UTF-8, and other items.** Hide them as described in step 5. If they come back after you hid them, quit VS Code with `Cmd+Q` and open it again.
 
 **The title bar is gone.** VS Code hides an empty title bar in full screen. Use a normal or maximized window instead of full screen.
 
@@ -215,6 +197,27 @@ The extension sets these defaults. Any value in your own `settings.json` wins ov
 
 **A Plume setting has no effect.** Your own `settings.json` probably sets the same key. Remove it there.
 
+## Build from source
+
+You need [Bun](https://bun.sh) 1.4.2 or newer and Git:
+
+```bash
+brew install oven-sh/bun/bun
+```
+
+Then download the code and install it into VS Code:
+
+```bash
+git clone https://github.com/sattorswe/plume-themes.git
+cd plume-themes
+bun install
+bun run install:vscode
+```
+
+Bun may print `Blocked 1 postinstall`. That is expected and safe: it is a signing helper for the Marketplace, which Plume doesn't use.
+
+`bun run install:vscode` builds the extension, packs it into a temporary `.vsix` file, installs it into VS Code, and deletes the temporary file. Nothing is left in the project folder. Continue with [step 2 of Install](#2-check-the-theme).
+
 ## How the build works
 
 `bun run build` writes everything into `dist/`:
@@ -223,13 +226,14 @@ The extension sets these defaults. Any value in your own `settings.json` wins ov
 2. `plume.css`, the Plume CSS layer, generated with PostCSS. Its colors are CSS variables that switch with the active theme.
 3. `extension.cjs`, the small runtime that adds the language version to the status bar and keeps the Plume stylesheet registered with the Custom CSS and JS Loader.
 
-`bun run typecheck` checks the code, and `bun run install:vscode` builds, packs, and installs the extension.
+`bun run typecheck` checks the code, `bun run package` builds `plume-themes.vsix` in the project folder, and `bun run install:vscode` builds, packs, and installs the extension.
 
 ## Project structure
 
 ```
 src/
 ├── index.ts          Build entry point
+├── package.ts        Package entry point
 ├── install.ts        Install entry point
 ├── BuildConfig.ts    Theme names, output files, and bundle settings
 ├── actions/          One build step per file
@@ -242,3 +246,17 @@ src/
 ├── support/          Small shared helpers
 └── types/            Shared TypeScript types
 ```
+
+## Release a new version
+
+Releases are built by GitHub Actions from `.github/workflows/release.yml`.
+
+1. Raise `version` in `package.json` and commit it.
+2. Tag the commit and push the tag:
+
+   ```bash
+   git tag v0.0.2
+   git push origin v0.0.2
+   ```
+
+The workflow builds `plume-themes.vsix` and publishes it as a new release. The install commands above always download the latest one.
