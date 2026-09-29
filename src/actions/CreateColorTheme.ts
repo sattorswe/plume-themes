@@ -1,10 +1,14 @@
 import { buildConfig } from "@/BuildConfig.ts";
 import { commonSyntaxTokenColors } from "@/editor/CommonSyntaxTokenColors.ts";
+import { dataSyntaxTokenColors } from "@/editor/DataSyntaxTokenColors.ts";
 import { editorBracketColors } from "@/editor/EditorBracketColors.ts";
 import { editorGutterColors } from "@/editor/EditorGutterColors.ts";
 import { editorSurfaceColors } from "@/editor/EditorSurfaceColors.ts";
 import { editorWidgetColors } from "@/editor/EditorWidgetColors.ts";
+import { markdownSyntaxTokenColors } from "@/editor/MarkdownSyntaxTokenColors.ts";
+import { markupSyntaxTokenColors } from "@/editor/MarkupSyntaxTokenColors.ts";
 import { phpSyntaxTokenColors } from "@/editor/PhpSyntaxTokenColors.ts";
+import { styleSheetSyntaxTokenColors } from "@/editor/StyleSheetSyntaxTokenColors.ts";
 import { typeScriptSyntaxTokenColors } from "@/editor/TypeScriptSyntaxTokenColors.ts";
 import type { ColorTheme } from "@/types/ColorThemeTypes.ts";
 import type { ThemeVariant } from "@/types/ThemeVariantTypes.ts";
@@ -54,5 +58,9 @@ export const createColorTheme = ({ name, type, palette }: ThemeVariant): ColorTh
     ...commonSyntaxTokenColors(palette),
     ...phpSyntaxTokenColors(palette),
     ...typeScriptSyntaxTokenColors(palette),
+    ...markupSyntaxTokenColors(palette),
+    ...styleSheetSyntaxTokenColors(palette),
+    ...dataSyntaxTokenColors(palette),
+    ...markdownSyntaxTokenColors(palette),
   ],
 });
