@@ -13,6 +13,7 @@ import { settingsEditorStyles } from "@/styles/SettingsEditorStyles.ts";
 import { shimmerKeyframes, shimmerStyles } from "@/styles/ShimmerStyles.ts";
 import { sideBarActionStyles } from "@/styles/SideBarActionStyles.ts";
 import { sideBarViewStyles } from "@/styles/SideBarViewStyles.ts";
+import { statusBarStyles } from "@/styles/StatusBarStyles.ts";
 import { themeVariableStyles } from "@/styles/ThemeVariableStyles.ts";
 import { userInterfaceFontStyles } from "@/styles/UserInterfaceFontStyles.ts";
 import { welcomePageStyles } from "@/styles/WelcomePageStyles.ts";
@@ -38,6 +39,7 @@ const styleRules: readonly StyleRule[] = [
   ...settingsEditorStyles,
   ...welcomePageStyles,
   ...extensionEditorStyles,
+  ...statusBarStyles,
 ];
 
 const createDeclarations = (declarations: StyleDeclarations, important: boolean) =>
