@@ -4,14 +4,18 @@ import { editorTitleActionStyles } from "@/styles/EditorTitleActionStyles.ts";
 import { editorWidgetStyles } from "@/styles/EditorWidgetStyles.ts";
 import { explorerSelectionStyles } from "@/styles/ExplorerSelectionStyles.ts";
 import { explorerTreeStyles } from "@/styles/ExplorerTreeStyles.ts";
+import { extensionEditorStyles } from "@/styles/ExtensionEditorStyles.ts";
+import { findWidgetStyles } from "@/styles/FindWidgetStyles.ts";
 import { notificationStyles } from "@/styles/NotificationStyles.ts";
 import { panelStyles } from "@/styles/PanelStyles.ts";
 import { scrollbarStyles } from "@/styles/ScrollbarStyles.ts";
+import { settingsEditorStyles } from "@/styles/SettingsEditorStyles.ts";
 import { shimmerKeyframes, shimmerStyles } from "@/styles/ShimmerStyles.ts";
 import { sideBarActionStyles } from "@/styles/SideBarActionStyles.ts";
 import { sideBarViewStyles } from "@/styles/SideBarViewStyles.ts";
 import { themeVariableStyles } from "@/styles/ThemeVariableStyles.ts";
 import { userInterfaceFontStyles } from "@/styles/UserInterfaceFontStyles.ts";
+import { welcomePageStyles } from "@/styles/WelcomePageStyles.ts";
 import type { StyleDeclarations, StyleKeyframes, StyleRule } from "@/types/StyleSheetTypes.ts";
 
 const styleKeyframes: readonly StyleKeyframes[] = [...shimmerKeyframes];
@@ -30,6 +34,10 @@ const styleRules: readonly StyleRule[] = [
   ...sideBarViewStyles,
   ...editorWidgetStyles,
   ...panelStyles,
+  ...findWidgetStyles,
+  ...settingsEditorStyles,
+  ...welcomePageStyles,
+  ...extensionEditorStyles,
 ];
 
 const createDeclarations = (declarations: StyleDeclarations, important: boolean) =>
