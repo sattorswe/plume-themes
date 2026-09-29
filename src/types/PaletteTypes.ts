@@ -13,7 +13,25 @@ type AccentRole =
 
 type EditorRole = "selection" | "inactiveSelection" | "findMatch" | "findMatchHighlight";
 
-type SyntaxRole = "keyword" | "string" | "comment" | "number" | "phpTag" | "bracket1" | "bracket2" | "bracket3";
+type SyntaxRole =
+  | "keyword"
+  | "string"
+  | "comment"
+  | "number"
+  | "phpTag"
+  | "tag"
+  | "attribute"
+  | "selector"
+  | "property"
+  | "propertyValue"
+  | "dataKey"
+  | "regexp"
+  | "escape"
+  | "heading"
+  | "inlineCode"
+  | "bracket1"
+  | "bracket2"
+  | "bracket3";
 
 type EffectRole = "sliderIdle" | "sliderHover" | "sliderActive" | "shadow" | "hairline" | "transparent";
 
