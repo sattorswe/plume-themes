@@ -4,5 +4,5 @@ import { applyPlumeStyleSheet } from "@/runtime/stylesheet/ApplyPlumeStyleSheet.
 
 export const activate = (context: ExtensionContext): void => {
   context.subscriptions.push(...createLanguageVersionStatusItem());
-  void applyPlumeStyleSheet(context.extensionUri);
+  void applyPlumeStyleSheet(context);
 };
