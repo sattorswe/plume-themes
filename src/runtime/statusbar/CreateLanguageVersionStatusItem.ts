@@ -1,6 +1,7 @@
 import { format } from "node:util";
-import { type Disposable, StatusBarAlignment, type TextEditor, window, workspace } from "vscode";
-import { languageRuntimeRegistry } from "@/runtime/LanguageRuntimeRegistry.ts";
+import { type Disposable, extensions, StatusBarAlignment, type TextEditor, window, workspace } from "vscode";
+import { resetLanguageLabels, resolveLanguageLabel } from "@/runtime/actions/ResolveLanguageLabel.ts";
+import { resolveLanguageVersion } from "@/runtime/actions/ResolveLanguageVersion.ts";
 import { runtimeConfig } from "@/runtime/RuntimeConfig.ts";
 
 export const createLanguageVersionStatusItem = (): Disposable[] => {
@@ -11,20 +12,20 @@ export const createLanguageVersionStatusItem = (): Disposable[] => {
   item.command = command;
 
   const render = async (editor: TextEditor | undefined): Promise<void> => {
-    const runtime = editor && languageRuntimeRegistry.get(editor.document.languageId);
-
-    if (!runtime) {
+    if (!editor) {
       return item.hide();
     }
 
-    const version = await runtime.resolveVersion(editor.document);
+    const label = resolveLanguageLabel(editor.document.languageId);
 
-    if (window.activeTextEditor !== editor) {
-      return;
-    }
-
-    item.text = version ? format(text, runtime.label, version) : runtime.label;
+    item.text = label;
     item.show();
+
+    const version = await resolveLanguageVersion(editor.document);
+
+    if (version && window.activeTextEditor === editor) {
+      item.text = format(text, label, version);
+    }
   };
 
   void render(window.activeTextEditor);
@@ -33,5 +34,6 @@ export const createLanguageVersionStatusItem = (): Disposable[] => {
     item,
     window.onDidChangeActiveTextEditor(render),
     workspace.onDidOpenTextDocument(() => render(window.activeTextEditor)),
+    extensions.onDidChange(resetLanguageLabels),
   ];
 };
