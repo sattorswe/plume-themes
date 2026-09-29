@@ -22,6 +22,36 @@ export type EditorBracketColorId =
   | "editorBracketHighlight.foreground2"
   | "editorBracketHighlight.foreground3";
 
+export type EditorDiffColorId =
+  | "diffEditor.insertedTextBackground"
+  | "diffEditor.removedTextBackground"
+  | "diffEditor.insertedLineBackground"
+  | "diffEditor.removedLineBackground"
+  | "diffEditorGutter.insertedLineBackground"
+  | "diffEditorGutter.removedLineBackground"
+  | "diffEditor.diagonalFill"
+  | "diffEditor.border"
+  | "diffEditor.unchangedRegionBackground"
+  | "diffEditor.unchangedRegionForeground"
+  | "editorGutter.addedBackground"
+  | "editorGutter.modifiedBackground"
+  | "editorGutter.deletedBackground"
+  | "editorOverviewRuler.addedForeground"
+  | "editorOverviewRuler.modifiedForeground"
+  | "editorOverviewRuler.deletedForeground";
+
+export type EditorDiagnosticColorId =
+  | "editorError.foreground"
+  | "editorWarning.foreground"
+  | "editorInfo.foreground"
+  | "editorOverviewRuler.errorForeground"
+  | "editorOverviewRuler.warningForeground"
+  | "editorOverviewRuler.infoForeground"
+  | "editorMarkerNavigation.background"
+  | "editorMarkerNavigationError.background"
+  | "editorMarkerNavigationWarning.background"
+  | "editorMarkerNavigationInfo.background";
+
 export type SideBarColorId =
   | "sideBar.background"
   | "sideBarTitle.background"
@@ -161,7 +191,9 @@ export type NotificationColorId =
   | "notificationCenterHeader.background"
   | "notificationCenterHeader.foreground"
   | "notificationLink.foreground"
-  | "notificationsInfoIcon.foreground";
+  | "notificationsInfoIcon.foreground"
+  | "notificationsWarningIcon.foreground"
+  | "notificationsErrorIcon.foreground";
 
 export type ButtonColorId =
   | "button.background"
@@ -172,10 +204,91 @@ export type ButtonColorId =
   | "button.secondaryForeground"
   | "button.secondaryHoverBackground";
 
+export type ProblemColorId =
+  | "problemsErrorIcon.foreground"
+  | "problemsWarningIcon.foreground"
+  | "problemsInfoIcon.foreground"
+  | "list.errorForeground"
+  | "list.warningForeground"
+  | "errorForeground";
+
+export type GitDecorationColorId =
+  | "gitDecoration.addedResourceForeground"
+  | "gitDecoration.modifiedResourceForeground"
+  | "gitDecoration.deletedResourceForeground"
+  | "gitDecoration.renamedResourceForeground"
+  | "gitDecoration.untrackedResourceForeground"
+  | "gitDecoration.ignoredResourceForeground"
+  | "gitDecoration.conflictingResourceForeground"
+  | "gitDecoration.stageModifiedResourceForeground"
+  | "gitDecoration.stageDeletedResourceForeground"
+  | "gitDecoration.submoduleResourceForeground";
+
+export type FormControlColorId =
+  | "dropdown.background"
+  | "dropdown.foreground"
+  | "dropdown.border"
+  | "dropdown.listBackground"
+  | "checkbox.background"
+  | "checkbox.foreground"
+  | "checkbox.border";
+
+export type TextContentColorId =
+  | "textLink.foreground"
+  | "textLink.activeForeground"
+  | "textPreformat.foreground"
+  | "textPreformat.background"
+  | "textCodeBlock.background"
+  | "textBlockQuote.background"
+  | "textBlockQuote.border";
+
+export type SettingsEditorColorId =
+  | "settings.headerForeground"
+  | "settings.modifiedItemIndicator"
+  | "settings.focusedRowBackground"
+  | "settings.rowHoverBackground"
+  | "settings.focusedRowBorder"
+  | "settings.headerBorder"
+  | "settings.sashBorder"
+  | "settings.dropdownBackground"
+  | "settings.dropdownBorder"
+  | "settings.dropdownListBorder"
+  | "settings.checkboxBackground"
+  | "settings.checkboxBorder"
+  | "settings.textInputBackground"
+  | "settings.textInputBorder"
+  | "settings.numberInputBackground"
+  | "settings.numberInputBorder";
+
+export type WelcomePageColorId =
+  | "welcomePage.background"
+  | "welcomePage.tileBackground"
+  | "welcomePage.tileHoverBackground"
+  | "welcomePage.tileBorder"
+  | "welcomePage.progress.background"
+  | "welcomePage.progress.foreground"
+  | "walkThrough.embeddedEditorBackground"
+  | "walkthrough.stepTitle.foreground";
+
+export type ExtensionColorId =
+  | "extensionButton.background"
+  | "extensionButton.foreground"
+  | "extensionButton.hoverBackground"
+  | "extensionButton.separator"
+  | "extensionButton.prominentBackground"
+  | "extensionButton.prominentForeground"
+  | "extensionButton.prominentHoverBackground"
+  | "extensionIcon.starForeground"
+  | "extensionIcon.verifiedForeground"
+  | "extensionBadge.remoteBackground"
+  | "extensionBadge.remoteForeground";
+
 type WorkbenchColorId =
   | EditorSurfaceColorId
   | EditorGutterColorId
   | EditorBracketColorId
+  | EditorDiffColorId
+  | EditorDiagnosticColorId
   | SideBarColorId
   | ActivityBarColorId
   | TitleBarColorId
@@ -191,6 +304,13 @@ type WorkbenchColorId =
   | BadgeColorId
   | EditorWidgetColorId
   | PanelColorId
-  | TerminalColorId;
+  | TerminalColorId
+  | ProblemColorId
+  | GitDecorationColorId
+  | FormControlColorId
+  | TextContentColorId
+  | SettingsEditorColorId
+  | WelcomePageColorId
+  | ExtensionColorId;
 
 export type WorkbenchColors<Id extends WorkbenchColorId = WorkbenchColorId> = Readonly<Record<Id, HexColor>>;
