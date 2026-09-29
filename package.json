@@ -4,6 +4,10 @@
   "description": "Plume color theme for VS Code",
   "version": "0.0.1",
   "publisher": "plume",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sattorswe/plume-themes"
+  },
   "private": true,
   "packageManager": "bun@1.4.2",
   "type": "module",
