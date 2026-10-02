@@ -1,5 +1,5 @@
 import { format } from "node:util";
-import { type Disposable, extensions, StatusBarAlignment, type TextEditor, window, workspace } from "vscode";
+import { type Disposable, extensions, StatusBarAlignment, type TextDocument, type TextEditor, window, workspace } from "vscode";
 import { resetLanguageLabels, resolveLanguageLabel } from "@/runtime/actions/ResolveLanguageLabel.ts";
 import { resolveLanguageVersion } from "@/runtime/actions/ResolveLanguageVersion.ts";
 import { runtimeConfig } from "@/runtime/RuntimeConfig.ts";
@@ -28,12 +28,20 @@ export const createLanguageVersionStatusItem = (): Disposable[] => {
     }
   };
 
+  const renderActiveDocument = async (document: TextDocument): Promise<void> => {
+    if (document.uri.toString() !== window.activeTextEditor?.document.uri.toString()) {
+      return;
+    }
+
+    await render(window.activeTextEditor);
+  };
+
   void render(window.activeTextEditor);
 
   return [
     item,
     window.onDidChangeActiveTextEditor(render),
-    workspace.onDidOpenTextDocument(() => render(window.activeTextEditor)),
+    workspace.onDidOpenTextDocument(renderActiveDocument),
     extensions.onDidChange(resetLanguageLabels),
   ];
 };

@@ -7,7 +7,6 @@ export const plumeCssVariables: Readonly<Record<CssVariableRole, CssVariable>> =
   accent: { name: "--plume-accent", value: "var(--plume-accent)" },
   accentMist: { name: "--plume-accent-mist", value: "var(--plume-accent-mist)" },
   accentGlow: { name: "--plume-accent-glow", value: "var(--plume-accent-glow)" },
-  textGlow: { name: "--plume-text-glow", value: "var(--plume-text-glow)" },
   shadow: { name: "--plume-shadow", value: "var(--plume-shadow)" },
   hairline: { name: "--plume-hairline", value: "var(--plume-hairline)" },
 };

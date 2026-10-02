@@ -9,7 +9,7 @@ const versions = new Map<VersionCommand, Promise<string | undefined>>();
 const extractVersion = (output: string, pattern: RegExp): string | undefined => pattern.exec(output)?.groups?.version;
 
 const readVersion = ({ binary, args, pattern = runtimeConfig.versionPattern }: VersionCommand): Promise<string | undefined> =>
-  run(binary, [...args]).then(
+  run(binary, [...args], { timeout: runtimeConfig.versionTimeout }).then(
     ({ stdout, stderr }) => extractVersion(stdout, pattern) ?? extractVersion(stderr, pattern),
     () => undefined,
   );

@@ -29,4 +29,12 @@ export const sideBarViewStyles: readonly StyleRule[] = [
     selectors: ["body .monaco-workbench .part.sidebar .monaco-button-dropdown > .monaco-button-dropdown-separator"],
     declarations: { display: "none" },
   },
+  {
+    selectors: [
+      'body .monaco-workbench .part.sidebar:has([id="workbench.view.explorer"]) > .title .title-label h2',
+      "body .monaco-workbench .pane:has(.explorer-folders-view) > .pane-header .title",
+    ],
+    declarations: { "font-weight": "bold" },
+    important: true,
+  },
 ];

@@ -16,7 +16,6 @@ export const plumeDarkPalette: ThemePalette = {
   accentStrong: "#2C63CE",
   accentStrongHover: "#2553B0",
   onAccentStrong: "#FFFFFF",
-  textGlow: "#FFFFFF",
 
   selection: "#264F78",
   inactiveSelection: "#3A3D41",

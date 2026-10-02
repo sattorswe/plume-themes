@@ -20,7 +20,7 @@ export interface CssVariable {
 
 export type CssVariableRole = Extract<
   PaletteRole,
-  "text" | "hover" | "divider" | "accent" | "accentMist" | "accentGlow" | "textGlow" | "shadow" | "hairline"
+  "text" | "hover" | "divider" | "accent" | "accentMist" | "accentGlow" | "shadow" | "hairline"
 >;
 
 export type ShimmerVariableRole = "base" | "glow" | "animation";

@@ -8,8 +8,7 @@ type AccentRole =
   | "accentGlow"
   | "accentStrong"
   | "accentStrongHover"
-  | "onAccentStrong"
-  | "textGlow";
+  | "onAccentStrong";
 
 type EditorRole = "selection" | "inactiveSelection" | "findMatch" | "findMatchHighlight";
 

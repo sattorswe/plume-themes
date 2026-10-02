@@ -1,3 +1,6 @@
+const nodeVersion = { binary: "node", args: ["--version"] } as const;
+const clangVersion = { binary: "clang", args: ["--version"] } as const;
+
 export const runtimeConfig = {
   statusItem: {
     id: "plume.languageVersion",
@@ -31,10 +34,11 @@ export const runtimeConfig = {
     bundledManifest: ["extensions", "node_modules", "typescript", "package.json"],
   },
   versionPattern: /(?<version>\d+(?:\.\d+)+)/,
+  versionTimeout: 5000,
   versionCommands: {
     php: { binary: "php", args: ["-r", "echo PHP_VERSION;"] },
-    javascript: { binary: "node", args: ["--version"] },
-    javascriptreact: { binary: "node", args: ["--version"] },
+    javascript: nodeVersion,
+    javascriptreact: nodeVersion,
     python: { binary: "python3", args: ["--version"] },
     go: { binary: "go", args: ["version"] },
     rust: { binary: "rustc", args: ["--version"] },
@@ -42,9 +46,9 @@ export const runtimeConfig = {
     ruby: { binary: "ruby", args: ["--version"] },
     dart: { binary: "dart", args: ["--version"] },
     swift: { binary: "swift", args: ["--version"], pattern: /Swift version (?<version>\d+(?:\.\d+)+)/ },
-    c: { binary: "clang", args: ["--version"] },
-    cpp: { binary: "clang", args: ["--version"] },
-    "objective-c": { binary: "clang", args: ["--version"] },
+    c: clangVersion,
+    cpp: clangVersion,
+    "objective-c": clangVersion,
     shellscript: { binary: "bash", args: ["--version"] },
   },
 } as const;

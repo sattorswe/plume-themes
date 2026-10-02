@@ -4,11 +4,6 @@ import type { StyleKeyframes, StyleRule } from "@/types/StyleSheetTypes.ts";
 const shimmer = "plume-shimmer";
 
 const languageLabel = 'body .monaco-workbench [id="plume.plume-themes.plume.languageVersion"] .statusbar-item-label';
-const selectionLabel = 'body .monaco-workbench [id="status.editor.selection"] .statusbar-item-label';
-const projectTitle = 'body .monaco-workbench .part.sidebar:has([id="workbench.view.explorer"]) > .title .title-label h2';
-const projectPaneTitle = "body .monaco-workbench .pane:has(.explorer-folders-view) > .pane-header .title";
-
-const shimmeringLabels = [languageLabel, selectionLabel, projectTitle, projectPaneTitle];
 
 export const shimmerKeyframes: readonly StyleKeyframes[] = [
   {
@@ -26,7 +21,11 @@ export const shimmerStyles: readonly StyleRule[] = [
     declarations: { [shimmerCssVariables.animation.name]: shimmer },
   },
   {
-    selectors: shimmeringLabels,
+    selectors: ["body .monaco-workbench.monaco-enable-motion:has(.part.titlebar.inactive)"],
+    declarations: { [shimmerCssVariables.animation.name]: "none" },
+  },
+  {
+    selectors: [languageLabel],
     declarations: {
       "font-weight": "bold",
       "background-image": plumeCssValues.shimmerGradient,
@@ -38,7 +37,7 @@ export const shimmerStyles: readonly StyleRule[] = [
     important: true,
   },
   {
-    selectors: shimmeringLabels,
+    selectors: [languageLabel],
     declarations: {
       "animation-name": shimmerCssVariables.animation.value,
       "animation-duration": "1.8s",
@@ -47,21 +46,10 @@ export const shimmerStyles: readonly StyleRule[] = [
     },
   },
   {
-    selectors: [projectTitle, projectPaneTitle],
-    declarations: { width: "fit-content" },
-  },
-  {
     selectors: [languageLabel],
     declarations: {
       [shimmerCssVariables.base.name]: plumeCssVariables.accent.value,
       [shimmerCssVariables.glow.name]: plumeCssVariables.accentGlow.value,
-    },
-  },
-  {
-    selectors: [selectionLabel, projectTitle, projectPaneTitle],
-    declarations: {
-      [shimmerCssVariables.base.name]: plumeCssVariables.text.value,
-      [shimmerCssVariables.glow.name]: plumeCssVariables.textGlow.value,
     },
   },
 ];

@@ -1,8 +1,9 @@
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
+import { plumeConfig } from "@/PlumeConfig.ts";
 
 export const buildConfig = {
-  output: { dir: "dist", indent: 2 },
+  output: { dir: plumeConfig.output.dir },
   workspace: { prefix: resolve(tmpdir(), "plume-themes-") },
   schema: "vscode://schemas/color-theme",
   themes: {
@@ -19,12 +20,12 @@ export const buildConfig = {
       scope: ["body.vs-dark", "body .monaco-workbench.vs-dark"],
     },
   },
-  styles: { file: "plume.css" },
+  styles: { file: plumeConfig.styles.file },
   bundles: {
-    runtime: { entry: "src/runtime/PlumeExtension.ts", file: "extension.cjs", target: "node", format: "cjs", external: ["vscode"] },
+    runtime: { entry: "src/runtime/PlumeExtension.ts", file: "extension.cjs", target: "node", format: "cjs", external: ["vscode"], minify: true },
   },
   extension: {
-    name: "plume-themes",
+    name: plumeConfig.extension.name,
     ext: ".vsix",
     package: ["vsce", "package", "--no-dependencies", "--out"],
     install: ["code", "--force", "--install-extension"],

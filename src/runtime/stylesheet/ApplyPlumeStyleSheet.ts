@@ -1,5 +1,5 @@
 import { commands, type ExtensionContext, extensions, Uri } from "vscode";
-import { buildConfig } from "@/BuildConfig.ts";
+import { plumeConfig } from "@/PlumeConfig.ts";
 import { confirmPrompt } from "@/runtime/actions/ConfirmPrompt.ts";
 import { installCustomStyleLoader } from "@/runtime/actions/InstallCustomStyleLoader.ts";
 import { resolveStyleSheetApplied } from "@/runtime/actions/ResolveStyleSheetApplied.ts";
@@ -8,7 +8,7 @@ import { runtimeConfig } from "@/runtime/RuntimeConfig.ts";
 
 export const applyPlumeStyleSheet = async ({ extensionUri, globalState }: ExtensionContext): Promise<void> => {
   const { loaderId, applyCommand, quitCommand, prompts } = runtimeConfig.customStyles;
-  const styleSheet = Uri.joinPath(extensionUri, buildConfig.output.dir, buildConfig.styles.file);
+  const styleSheet = Uri.joinPath(extensionUri, plumeConfig.output.dir, plumeConfig.styles.file);
   const loaderReady = extensions.getExtension(loaderId) !== undefined || (await installCustomStyleLoader(globalState));
 
   if (!loaderReady) {

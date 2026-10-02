@@ -8,4 +8,9 @@ export const statusBarStyles: readonly StyleRule[] = [
     declarations: { display: "none" },
     important: true,
   },
+  {
+    selectors: ['body .monaco-workbench [id="status.editor.selection"] .statusbar-item-label'],
+    declarations: { "font-weight": "bold" },
+    important: true,
+  },
 ];
